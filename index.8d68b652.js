@@ -1,0 +1,2 @@
+!function(o){const n=fetch("https://restcountries.com/v3.1/all");console.log("FetchCountry",n),n.then((o=>{console.log("response:",o);const n=o.json();return console.log("countryData:",n),n})).then((o=>{console.log("receiveCountryData:",o);const n=["name","capital","population","flags.svg","languages"];let t=[];for(const e of o){let o={};for(let t in e)n.includes(t)&&(o[t]=e[t]);t.push(o)}console.log("to",t[5].name.official)}))}();
+//# sourceMappingURL=index.8d68b652.js.map
