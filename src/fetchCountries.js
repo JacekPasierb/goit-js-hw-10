@@ -1,5 +1,7 @@
-export function fetchCountries(name) {
-  const fetchCountry = fetch('https://restcountries.com/v3.1/all');
+export const fetchCountries = (name) => {
+  const fetchCountry = fetch('https://restcountries.com/v3.1/all',{
+  mode: 'no-cors'
+});
 
   console.log('FetchCountry', fetchCountry);
 
@@ -33,6 +35,6 @@ export function fetchCountries(name) {
         newCountryData.push(newObject);
       }
 
-      console.log('to', newCountryData[5].name.official);
+      console.log('to', newCountryData);
     });
 }
