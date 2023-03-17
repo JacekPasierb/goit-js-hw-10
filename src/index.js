@@ -11,8 +11,15 @@ inputSearchBox.addEventListener("input", debounce((e) => {
     
     console.log(inputSearchBox.value);
     // fetchCountries(inputSearchBox.value);
-    if (inputSearchBox.value == "") {
-        console.log("puste pole");
-    }
+  
 
-},DEBOUNCE_DELAY))
+    if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
+        console.log('puste pole');
+        return;
+    } 
+    
+        console.log('start');
+        fetchCountries(inputSearchBox.value.trim());
+    
+
+}, DEBOUNCE_DELAY));
