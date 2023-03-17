@@ -1,4 +1,5 @@
-export const fetchCountries = (name) => {
+import Notiflix from 'notiflix';
+export const fetchCountries = name => {
   const fetchCountry = fetch('https://restcountries.com/v3.1/all');
 
   console.log('1. FetchCountry: ', fetchCountry);
@@ -33,30 +34,38 @@ export const fetchCountries = (name) => {
         newCountryData.push(newObject);
       }
 
-      console.log('5. Nowy Obiekt z Wybranymi właściwosciami: ', newCountryData);
+      console.log(
+        '5. Nowy Obiekt z Wybranymi właściwosciami: ',
+        newCountryData
+      );
       return newCountryData;
-    }).then(revceiveNewCountryData => {
+    })
+    .then(revceiveNewCountryData => {
+      console.log('NowyData', revceiveNewCountryData);
 
-      console.log("NowyData", revceiveNewCountryData);
-      
-     
-      const nameOfficial = revceiveNewCountryData.filter(country => country.name.official.toLowerCase().includes(name.toLowerCase()));
-      console.log("6. kraje", nameOfficial);
-      
+      const nameOfficial = revceiveNewCountryData.filter(country =>
+        country.name.official.toLowerCase().includes(name.toLowerCase())
+      );
+      console.log('6. kraje', nameOfficial);
+
       printCountry(nameOfficial);
-      
     });
-}
-const countryList = document.querySelector(".country-list");
+};
+const countryList = document.querySelector('.country-list');
 function printCountry(country) {
-  let countryListHtml = "";
+  let countryListHtml = '';
 
-  country.forEach((country) => {
+  country.forEach(country => {
     countryListHtml += `<li>${country.name.official}</li>`;
-  })
+  });
   countryList.innerHTML = countryListHtml;
   // if (name == '' || name == undefined) {
-  
+
   //   countryList.innerHTML = "";
-  // } 
+  // }
+  if (country.length > 10) {
+    Notiflix.Notify.info(
+      'Too many matches found. Please enter a more specific name.'
+    );
+  }
 }
