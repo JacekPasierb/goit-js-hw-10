@@ -20,6 +20,5 @@ inputSearchBox.addEventListener("input", debounce((e) => {
     
         console.log('start');
         fetchCountries(inputSearchBox.value.trim());
-    
-
+   
 }, DEBOUNCE_DELAY));

@@ -18,7 +18,7 @@ export const fetchCountries = name => {
         'name',
         'capital',
         'population',
-        'flags.svg',
+        'flags',
         'languages',
       ];
       let newCountryData = [];
@@ -52,20 +52,37 @@ export const fetchCountries = name => {
     });
 };
 const countryList = document.querySelector('.country-list');
-function printCountry(country) {
+function printCountry(countries) {
   let countryListHtml = '';
-
-  country.forEach(country => {
-    countryListHtml += `<li>${country.name.official}</li>`;
-  });
+  if (countries.length > 10) {
+    Notiflix.Notify.info(
+      'Too many matches found. Please enter a more specific name.'
+    );
+  } else {
+    countries.forEach(country => {
+   
+      countryListHtml += `<li><img src="${country.flags.svg}" width="40" height="40"> ${country.name.official}</li>`;
+   
+    });
+   
+  }
   countryList.innerHTML = countryListHtml;
+  const allLi = document.querySelectorAll('li');
+  const ul = document.querySelector("ul");
+  ul.style.padding = "0px";
+  allLi.forEach(li => {
+    li.style.display = "flex";
+    li.style.alignItems = "center";
+    li.style.gap = "20px";
+    li.style.marginBottom = "10px";
+  });
+    
+      // const li = document.querySelector('li');
+      // li.style.display = 'flex';
+      // li.style.alignItems = 'center';
   // if (name == '' || name == undefined) {
 
   //   countryList.innerHTML = "";
   // }
-  if (country.length > 10) {
-    Notiflix.Notify.info(
-      'Too many matches found. Please enter a more specific name.'
-    );
-  }
+ 
 }
