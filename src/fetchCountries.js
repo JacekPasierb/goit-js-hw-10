@@ -2,18 +2,13 @@ import Notiflix from 'notiflix';
 export const fetchCountries = name => {
   const fetchCountry = fetch('https://restcountries.com/v3.1/all');
 
-  console.log('1. FetchCountry: ', fetchCountry);
-
   fetchCountry
     .then(response => {
-      console.log('2. response:', response);
       const countryData = response.json();
-      console.log('3. countryData:', countryData);
+
       return countryData;
     })
     .then(receiveCountryData => {
-      console.log('4. receiveCountryData:', receiveCountryData);
-
       const selectedKeys = [
         'name',
         'capital',
@@ -34,22 +29,16 @@ export const fetchCountries = name => {
         newCountryData.push(newObject);
       }
 
-      console.log(
-        '5. Nowy Obiekt z Wybranymi właściwosciami: ',
-        newCountryData
-      );
       return newCountryData;
     })
     .then(revceiveNewCountryData => {
-      console.log('NowyData', revceiveNewCountryData);
-
       const nameCommon = revceiveNewCountryData.filter(country =>
         country.name.common.toLowerCase().includes(name.toLowerCase())
       );
-      console.log('6. kraje', nameCommon);
 
       printCountry(nameCommon);
-    }).catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
 };
 const countryList = document.querySelector('.country-list');
 function printCountry(countries) {
@@ -58,12 +47,7 @@ function printCountry(countries) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  }
-  else if (countries.length == 0) {
-
-    allLi.remove();
-  }
-  else {
+  } else {
     countries.forEach(country => {
       countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
     });
@@ -77,9 +61,5 @@ function printCountry(countries) {
     li.style.alignItems = 'center';
     li.style.gap = '20px';
     li.style.marginBottom = '10px';
-  
   });
-
-
-  
 }
