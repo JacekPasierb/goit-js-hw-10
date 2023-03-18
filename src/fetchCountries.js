@@ -58,31 +58,25 @@ function printCountry(countries) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  } else {
+  } else if(countries.length == 0) {
+
+    allLi.remove();
+  }else {
     countries.forEach(country => {
-   
       countryListHtml += `<li><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
-   
     });
-   
   }
   countryList.innerHTML = countryListHtml;
   const allLi = document.querySelectorAll('li');
-  const ul = document.querySelector("ul");
-  ul.style.padding = "0px";
+  const ul = document.querySelector('ul');
+  ul.style.padding = '0px';
   allLi.forEach(li => {
-    li.style.display = "flex";
-    li.style.alignItems = "center";
-    li.style.gap = "20px";
-    li.style.marginBottom = "10px";
+    li.style.display = 'flex';
+    li.style.alignItems = 'center';
+    li.style.gap = '20px';
+    li.style.marginBottom = '10px';
   });
-    
-      // const li = document.querySelector('li');
-      // li.style.display = 'flex';
-      // li.style.alignItems = 'center';
-  // if (name == '' || name == undefined) {
 
-  //   countryList.innerHTML = "";
-  // }
- 
+  
+  
 }
