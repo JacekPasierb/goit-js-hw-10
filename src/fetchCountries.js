@@ -43,12 +43,12 @@ export const fetchCountries = name => {
     .then(revceiveNewCountryData => {
       console.log('NowyData', revceiveNewCountryData);
 
-      const nameOfficial = revceiveNewCountryData.filter(country =>
-        country.name.official.toLowerCase().includes(name.toLowerCase())
+      const nameCommon = revceiveNewCountryData.filter(country =>
+        country.name.common.toLowerCase().includes(name.toLowerCase())
       );
-      console.log('6. kraje', nameOfficial);
+      console.log('6. kraje', nameCommon);
 
-      printCountry(nameOfficial);
+      printCountry(nameCommon);
     });
 };
 const countryList = document.querySelector('.country-list');
@@ -61,7 +61,7 @@ function printCountry(countries) {
   } else {
     countries.forEach(country => {
    
-      countryListHtml += `<li><img src="${country.flags.svg}" width="40" height="40"> ${country.name.official}</li>`;
+      countryListHtml += `<li><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
    
     });
    
