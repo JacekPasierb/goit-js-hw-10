@@ -14,7 +14,9 @@ inputSearchBox.addEventListener("input", debounce((e) => {
   
 
     if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
-        console.log('puste pole');
+        
+        const countryList = document.querySelectorAll(".item");
+        countryList.forEach(country=>country.remove())
         return;
     } 
     

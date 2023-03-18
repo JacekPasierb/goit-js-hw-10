@@ -49,7 +49,7 @@ export const fetchCountries = name => {
       console.log('6. kraje', nameCommon);
 
       printCountry(nameCommon);
-    });
+    }).catch(error => console.log(error));
 };
 const countryList = document.querySelector('.country-list');
 function printCountry(countries) {
@@ -58,12 +58,14 @@ function printCountry(countries) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  } else if(countries.length == 0) {
+  }
+  else if (countries.length == 0) {
 
     allLi.remove();
-  }else {
+  }
+  else {
     countries.forEach(country => {
-      countryListHtml += `<li><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
+      countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
     });
   }
   countryList.innerHTML = countryListHtml;
@@ -75,8 +77,9 @@ function printCountry(countries) {
     li.style.alignItems = 'center';
     li.style.gap = '20px';
     li.style.marginBottom = '10px';
+  
   });
 
-  
+
   
 }
