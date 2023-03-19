@@ -41,8 +41,10 @@ export const fetchCountries = name => {
     .catch(error => console.log(error));
 };
 const countryList = document.querySelector('.country-list');
+const countryInfo = document.querySelector('.country-info');
 function printCountry(countries) {
   let countryListHtml = '';
+  let countryInfoHtml = '';
   if (countries.length > 10) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
@@ -52,7 +54,9 @@ function printCountry(countries) {
       countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
     });
   }
+
   countryList.innerHTML = countryListHtml;
+
   const allLi = document.querySelectorAll('li');
   const ul = document.querySelector('ul');
   ul.style.padding = '0px';
@@ -62,4 +66,20 @@ function printCountry(countries) {
     li.style.gap = '20px';
     li.style.marginBottom = '10px';
   });
+  if (countries.length == 1) {
+    countries.forEach(country => {
+      for (const key in country) {
+        if (key !== 'name' && key !== 'flags') {
+          if (key == 'languages') {
+            for (const language in country[key]) {
+              countryInfoHtml += `<p class="info">${key}: ${country[key][language]}</p>`;
+            }
+          } else {
+            countryInfoHtml += `<p class="info">${key}: ${country[key]}</p>`;
+          }
+        }
+      }
+    });
+  }
+  countryInfo.innerHTML = countryInfoHtml;
 }

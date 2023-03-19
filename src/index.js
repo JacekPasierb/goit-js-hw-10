@@ -11,6 +11,8 @@ inputSearchBox.addEventListener(
     if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
       const countryList = document.querySelectorAll('.item');
       countryList.forEach(country => country.remove());
+      const countryInfo = document.querySelectorAll('.info');
+      countryInfo.forEach(country => country.remove());
       return;
     }
 
