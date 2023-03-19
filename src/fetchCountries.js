@@ -51,7 +51,7 @@ function printCountry(countries) {
     );
   } else {
     countries.forEach(country => {
-      countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> ${country.name.common}</li>`;
+      countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> <span class="nameCountry">${country.name.common}</span></li>`;
     });
   }
 
@@ -68,6 +68,10 @@ function printCountry(countries) {
   });
   if (countries.length == 1) {
     countries.forEach(country => {
+      const spn = document.querySelector('span.nameCountry');
+      spn.style.fontWeight = 'bold';
+      spn.style.fontSize = '48px';
+
       for (const key in country) {
         if (key !== 'name' && key !== 'flags') {
           if (key == 'languages') {
@@ -81,5 +85,6 @@ function printCountry(countries) {
       }
     });
   }
+
   countryInfo.innerHTML = countryInfoHtml;
 }
