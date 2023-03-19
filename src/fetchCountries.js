@@ -71,11 +71,11 @@ function printCountry(countries) {
       for (const key in country) {
         if (key !== 'name' && key !== 'flags') {
           if (key == 'languages') {
-            for (const language in country[key]) {
-              countryInfoHtml += `<p class="info">${key}: ${country[key][language]}</p>`;
-            }
+            countryInfoHtml += `<span class="info"><b>${key}:</b> ${Object.values(
+              country[key]
+            ).join(', ')}</span>`;
           } else {
-            countryInfoHtml += `<p class="info">${key}: ${country[key]}</p>`;
+            countryInfoHtml += `<p class="info"><b>${key}:</b> ${country[key]}</p>`;
           }
         }
       }
