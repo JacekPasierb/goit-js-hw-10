@@ -8,14 +8,15 @@ const inputSearchBox = document.querySelector('#search-box');
 inputSearchBox.addEventListener(
   'input',
   debounce(e => {
-    if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
-      const countryList = document.querySelectorAll('.item');
-      countryList.forEach(country => country.remove());
-      const countryInfo = document.querySelectorAll('.info');
-      countryInfo.forEach(country => country.remove());
-      return;
-    }
+      if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
+          const countryList = document.querySelectorAll('.item');
+          countryList.forEach(country => country.remove());
+          const countryInfo = document.querySelectorAll('.info');
+          countryInfo.forEach(country => country.remove());
+          return;
+      } else {
 
-    fetchCountries(inputSearchBox.value.trim());
+          fetchCountries(inputSearchBox.value.trim());
+      }
   }, DEBOUNCE_DELAY)
 );
