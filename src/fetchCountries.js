@@ -35,7 +35,10 @@ export const fetchCountries = name => {
       const nameCommon = revceiveNewCountryData.filter(country =>
         country.name.common.toLowerCase().includes(name.toLowerCase())
       );
-
+      // if (name.length >= 1 && !nameCommon.includes(name)) {
+      //   console.log(name);
+      //   Notiflix.Notify.failure('Qui timide rogat docet negare');
+      // }
       printCountry(nameCommon);
     })
     .catch(error => console.log(error));
@@ -49,11 +52,10 @@ function printCountry(countries) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  } else {
-    countries.forEach(country => {
-      countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> <span class="nameCountry">${country.name.common}</span></li>`;
-    });
   }
+  countries.forEach(country => {
+    countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> <span class="nameCountry">${country.name.common}</span></li>`;
+  });
 
   countryList.innerHTML = countryListHtml;
 
