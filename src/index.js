@@ -1,6 +1,7 @@
 import './css/styles.css';
-import { fetchCountries } from './fetchCountries.js';
+import { fetchCountry } from './fetchCountries.js';
 import debounce from 'lodash.debounce';
+import { trimInput } from './myLibrary';
 
 const DEBOUNCE_DELAY = 300;
 const inputSearchBox = document.querySelector('#search-box');
@@ -8,15 +9,8 @@ const inputSearchBox = document.querySelector('#search-box');
 inputSearchBox.addEventListener(
   'input',
   debounce(e => {
-      if (inputSearchBox.value == '' || inputSearchBox.value == undefined) {
-          const countryList = document.querySelectorAll('.item');
-          countryList.forEach(country => country.remove());
-          const countryInfo = document.querySelectorAll('.info');
-          countryInfo.forEach(country => country.remove());
-          return;
-      } else {
+    countryName = trimInput(inputSearchBox.value);
 
-          fetchCountries(inputSearchBox.value.trim());
-      }
+    fetchCountry(countryName).then(dob => console.log(dob));
   }, DEBOUNCE_DELAY)
 );
