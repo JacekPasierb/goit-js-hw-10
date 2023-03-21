@@ -7,23 +7,19 @@ import Notiflix from 'notiflix';
 const DEBOUNCE_DELAY = 300;
 const inputSearchBox = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
+const countryListItem = document.querySelectorAll('.item');
+const countryInfo = document.querySelectorAll('.info');
 let countryListHtml = '';
+let countryInfoHtml = '';
+
 inputSearchBox.addEventListener(
   'input',
   debounce(e => {
-    countryName = trimInput(inputSearchBox.value);
-
+    let countryName = trimInput(inputSearchBox.value);
+    
     fetchCountry(countryName).then(countryData => {
-      if (countryData.length > 10) {
-        Notiflix.Notify.info(
-          'Too many matches found. Please enter a more specific name.'
-        );
-      }
-      countryListHtml = "";
-      countryData.forEach(country => {
-        countryListHtml += `<li class="item"><img src="${country.flags.svg}" width="60" height="40"> <span class="nameCountry">${country.name.common}</span></li>`;
-      });
-      countryList.innerHTML = countryListHtml;
-    });
-  }, DEBOUNCE_DELAY)
-);
+      console.log('1:', countryData);
+
+    })
+  }, DEBOUNCE_DELAY))
+
